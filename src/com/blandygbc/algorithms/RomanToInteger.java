@@ -59,8 +59,45 @@ public class RomanToInteger {
         return result;
     }
 
+    public static Integer getRomanNumeralValue(char numeral) {
+        switch (numeral) {
+            case 'I':
+                return 1;
+            case 'V':
+                return 5;
+            case 'X':
+                return 10;
+            case 'L':
+                return 50;
+            case 'C':
+                return 100;
+            case 'D':
+                return 500;
+            case 'M':
+                return 1000;
+            default:
+                return 0;
+        }
+    }
+
+    public static Integer romanToInt3(String s) {
+        int result = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if ((i + 1) <= (s.length() - 1)
+                    && getRomanNumeralValue(s.charAt(i)) < getRomanNumeralValue(s.charAt(i + 1))) {
+                result -= getRomanNumeralValue(s.charAt(i));
+            } else {
+                result += getRomanNumeralValue(s.charAt(i));
+            }
+        }
+        return result;
+    }
+
+    static final String ROMAN_NUMBER = "MCMXCIV";
+
     public static void main(String[] args) {
-        logger.log(Level.INFO, "The MCMXCIV in first method: {0}", romanToInt("MCMXCIV"));
-        logger.log(Level.INFO, "The MCMXCIV in second method: {0}", romanToInt2("MCMXCIV"));
+        logger.log(Level.INFO, "The MCMXCIV in first method: {0}", romanToInt(ROMAN_NUMBER));
+        logger.log(Level.INFO, "The MCMXCIV in second method: {0}", romanToInt2(ROMAN_NUMBER));
+        logger.log(Level.INFO, "The MCMXCIV in third method: {0}", romanToInt3(ROMAN_NUMBER));
     }
 }

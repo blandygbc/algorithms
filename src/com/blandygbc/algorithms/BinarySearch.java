@@ -12,12 +12,17 @@ public class BinarySearch {
         Integer mid = 0;
         StringBuilder stringBuilder = new StringBuilder("The number " + target);
         while (max > min) {
+            // Get the middle index
             mid = (min + max) / 2;
             if (numbers[mid].equals(target)) {
                 return stringBuilder.append(" was found at index " + mid).toString();
             } else if (numbers[mid] < target) {
+                // if the actual number in array is smaller than the target
+                // set the mid+1 to the min index
                 min = mid + 1;
             } else if (numbers[mid] > target) {
+                // if the actual number in array is bigger than the target
+                // set the mid-1 to the max index
                 max = mid - 1;
             }
         }
